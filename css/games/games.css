@@ -1,0 +1,61 @@
+.game-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.4rem;
+}
+
+.game-header h1 {
+    margin: 0 0 0.3rem;
+}
+
+.game-description {
+    margin: 0;
+    font-size: var(--font-size-standard);
+    color: var(--text-muted);
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    align-items: flex-end;
+    min-width: 220px;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: var(----font-size-smaller);
+    color: var(--text-muted);
+}
+
+.control-group select {
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(3, 3, 18, 0.98);
+    color: var(--text-main);
+    padding: 0.4rem 0.6rem;
+    font-size: var(----font-size-smaller);
+}
+
+.scoreboard {
+    display: flex;
+    gap: 1rem;
+    font-size: var(----font-size-smaller);
+}
+
+.score-item {
+    display: flex;
+    gap: 0.35rem;
+    align-items: baseline;
+}
+
+.score-label {
+    color: var(--text-muted);
+}
+
+.score-value {
+    font-weight: 600;
+}

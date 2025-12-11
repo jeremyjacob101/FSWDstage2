@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="../../css/global.css">
+<link rel="stylesheet" href="../../css/components/header.css">
+
+<header class="site-header">
+    <div class="container header-content">
+        <a href="../index.html" target="_top" class="logo">Play2Play</a>
+
+        <nav class="main-nav">
+            <ul class="main-nav-list">
+                <li class="nav-welcome nav-logged-in">
+                    <span id="nav-username" class="nav-username-text"></span>
+                </li>
+
+                <li class="nav-item nav-item-games">
+                    <button type="button" class="nav-link nav-games-toggle">
+                        Games
+                    </button>
+                </li>
+
+                <li class="nav-logged-in">
+                    <a href="#" id="logout-link">Logout</a>
+                </li>
+
+                <li class="nav-logged-out">
+                    <a href="../auth.html" target="_top">Login / Register</a>
+                </li>
+            </ul>
+
+            <div class="games-slider" id="games-slider">
+                <div class="games-slider-track">
+                    <a href="../game-1.html" target="_top" class="games-slider-item">
+                        Game 1
+                    </a>
+                    <a href="../game-2.html" target="_top" class="games-slider-item">
+                        Game 2
+                    </a>
+                    <a href="../game-placeholder.html" target="_top" class="games-slider-item">
+                        Game 3
+                    </a>
+                    <a href="../game-placeholder.html" target="_top" class="games-slider-item">
+                        Game 4
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<script src="../../js/components/header.js"></script>

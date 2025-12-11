@@ -1,0 +1,168 @@
+:root {
+    --bg-color: #060713;
+    --bg-elevated: #101325;
+    --accent: #4f7cff;
+    --accent-soft: rgba(79, 124, 255, 0.2);
+    --accent-strong: #3c62d4;
+    --text-main: #f7f7ff;
+    --text-muted: #a4a6c2;
+    --font-size-standard: 0.9rem;
+    --font-size-smaller: 0.85rem;
+    --border-subtle: rgba(255, 255, 255, 0.06);
+    --radius-max: 999px;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: radial-gradient(circle at top, #151a3c 0, #060713 45%, #03040a 100%);
+    color: var(--text-main);
+    min-height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.6rem;
+}
+
+/* Generic Button */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.6rem 1.3rem;
+    border-radius: var(--radius-max);
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: transparent;
+    color: var(--text-main);
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
+        transform 0.1s ease, box-shadow 0.18s ease;
+}
+
+.btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.btn.primary-btn {
+    background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 10px 30px rgba(79, 124, 255, 0.5);
+}
+
+.btn.primary-btn:hover {
+    filter: brightness(1.07);
+}
+
+.btn.secondary-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.16);
+}
+
+.btn.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.btn.ghost-btn {
+    background: transparent;
+    border-color: rgba(255, 255, 255, 0.14);
+    color: var(--text-muted);
+}
+
+.btn.ghost-btn:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+/* Generic Sections/Cards */
+.section-header {
+    margin-bottom: 1.8rem;
+}
+
+.section-header h2 {
+    margin: 0 0 0.3rem;
+    font-size: 1.6rem;
+}
+
+.section-subtitle {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.game-card,
+.auth-card,
+.placeholder-card {
+    background: radial-gradient(circle at top left, rgba(79, 124, 255, 0.22), transparent 55%),
+        var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    padding: 1.3rem 1.4rem;
+}
+
+.game-card h3,
+.auth-card h2,
+.placeholder-card h1 {
+    margin-top: 0;
+}
+
+/* Main game area */
+.game-main {
+    padding: 1.6rem 0 2.2rem;
+}
+
+.game-area-wrapper {
+    margin-top: 1.4rem;
+    border-radius: 12px;
+    border: 1px solid white;
+}
+
+.game-area {
+    position: relative;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.05), #050711 55%);
+    min-height: 280px;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.game-placeholder-text {
+    position: absolute;
+    inset: auto 0 0 0;
+    text-align: center;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}

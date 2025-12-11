@@ -1,0 +1,12 @@
+.site-footer {
+    margin-top: auto;
+    padding: 1.4rem 0 1.6rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: radial-gradient(circle at bottom, #111426, #060713 55%);
+}
+
+.footer-content {
+    text-align: center;
+    font-size: var(----font-size-smaller);
+    color: var(--text-muted);
+}

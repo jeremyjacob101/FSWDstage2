@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play2Play</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/index.css">
+</head>
+
+<body>
+    <embed src="../html/components/header.html" style="width: 100%; border: 0; height: 80px;">
+
+    <main>
+        <section class="hero">
+            <div class="container hero-inner">
+                <div class="hero-copy">
+                    <p class="hero-kicker">Welcome to Play2Play</p>
+                    <h1 class="hero-title">Play, practice, and track your progress.</h1>
+                    <p class="hero-text">
+                        Log in, choose a game, and see how high you can push your scores.
+                        Your best results are saved on this computer using Local Storage.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="../html/auth.html" class="btn primary-btn">Login / Register</a>
+                        <a href="#games" class="btn ghost-btn">Browse Games</a>
+                    </div>
+
+                    <div class="hero-meta">
+                        <span>2 games ready to play</span>
+                        <span>2 more in development</span>
+                        <span>Scores saved per user</span>
+                    </div>
+                </div>
+
+                <aside class="hero-card">
+                    <h2 class="hero-card-title">Today's Challenge</h2>
+                    <p class="hero-card-text">
+                        Pick a user, play both games, and try to beat your own top score.
+                    </p>
+                    <ul class="hero-card-list">
+                        <li><strong>Game 1</strong> - Description</li>
+                        <li><strong>Game 2</strong> - Description</li>
+                    </ul>
+                    <p class="hero-card-footnote">
+                        Tip: You can log out and create another user to compare scores.
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <section id="games" class="games-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Games</h2>
+                    <p class="section-subtitle">
+                        Choose a game. Two are ready, the rest are still in development.
+                    </p>
+                </header>
+
+                <div class="games-grid">
+
+                    <article class="game-card">
+                        <h3>Game 1</h3>
+                        <p>Short description.</p>
+                        <a href="../html/game-1.html" class="btn primary-btn">Play</a>
+                    </article>
+
+                    <article class="game-card">
+                        <h3>Game 2</h3>
+                        <p>Short description.</p>
+                        <a href="../html/game-2.html" class="btn primary-btn">Play</a>
+                    </article>
+
+                    <article class="game-card game-card-disabled">
+                        <h3>Game 3</h3>
+                        <p>Coming soon.</p>
+                        <a href="../html/game-placeholder.html" class="btn ghost-btn">In Development</a>
+                    </article>
+
+                    <article class="game-card game-card-disabled">
+                        <h3>Game 4</h3>
+                        <p>Coming soon.</p>
+                        <a href="../html/game-placeholder.html" class="btn ghost-btn">In Development</a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <embed src="../html/components/footer.html" style="width: 100%; border: 0; height: 80px;">
+</body>
+
+</html>

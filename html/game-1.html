@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play2Play - Game 1</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/games/games.css">
+    <link rel="stylesheet" href="../css/games/game-1.css">
+</head>
+
+<body>
+    <embed src="../html/components/header.html" style="width: 100%; border: 0; height: 80px;">
+
+    <main class="game-main">
+        <div class="container">
+            <section class="game-header">
+                <div>
+                    <h1>Game 1</h1>
+                    <p class="game-description">
+                        Detailed description.
+                    </p>
+                </div>
+
+                <div class="game-controls">
+                    <div class="control-group">
+                        <label for="difficulty-select">Difficulty</label>
+                        <select id="difficulty-select">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+
+                    <div class="scoreboard">
+                        <div class="score-item">
+                            <span class="score-label">Score:</span>
+                            <span class="score-value" id="game-score">0</span>
+                        </div>
+                        <div class="score-item">
+                            <span class="score-label">Best:</span>
+                            <span class="score-value" id="game-best-score">0</span>
+                        </div>
+                    </div>
+
+                    <button class="btn primary-btn" id="game-start-btn">Start Game</button>
+                </div>
+            </section>
+
+            <section class="game-area-wrapper">
+                <!-- Fill game-1 later-->
+            </section>
+        </div>
+    </main>
+
+    <embed src="../html/components/footer.html" style="width: 100%; border: 0; height: 80px;">
+</body>
+
+</html>

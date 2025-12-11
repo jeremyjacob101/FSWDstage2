@@ -1,0 +1,136 @@
+/* Hero Section */
+.hero {
+    position: relative;
+    padding: 1.6rem 0 4.4rem;
+    min-height: 620px;
+    display: flex;
+    align-items: flex-end;
+
+    background-image:
+        linear-gradient(to bottom, rgba(6, 7, 19, 0.82), rgba(6, 7, 19, 0.95)),
+        url("https://media.istockphoto.com/id/157739391/photo/vintage-pacman-video-game.jpg?s=612x612&w=0&k=20&c=9-Fcw02hf4asax6uiAKoF-p6rQVTN7ifpFuvnrxyS1Y=");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.hero-inner {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 1.8rem;
+    align-items: flex-end;
+}
+
+.hero-copy {
+    max-width: 620px;
+}
+
+.hero-kicker {
+    margin: 0 0 0.4rem;
+    font-size: var(----font-size-smaller);
+    letter-spacing: 0.18rem;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+}
+
+.hero-title {
+    margin: 0 0 0.6rem;
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.hero-text {
+    margin: 0 0 1.2rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+}
+
+.hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.hero-meta span {
+    padding: 0.25rem 0.7rem;
+    border-radius: var(--radius-max);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+/* Right side card */
+.hero-card {
+    background: radial-gradient(circle at top left, rgba(79, 124, 255, 0.32), transparent 60%),
+        var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    padding: 1.3rem 1.4rem;
+    font-size: var(--font-size-standard);
+}
+
+.hero-card-title {
+    margin: 0 0 0.3rem;
+    font-size: 1.15rem;
+}
+
+.hero-card-text {
+    margin: 0 0 0.9rem;
+    color: var(--text-muted);
+}
+
+.hero-card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.8rem;
+}
+
+.hero-card-list li {
+    margin-bottom: 0.35rem;
+}
+
+.hero-card-list strong {
+    font-weight: 600;
+}
+
+.hero-card-footnote {
+    margin: 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Games Section*/
+.games-section {
+    padding: 2rem 0 3rem;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem;
+}
+
+.game-card p {
+    font-size: var(--font-size-standard);
+    color: var(--text-muted);
+}
+
+.game-card .btn {
+    margin-top: 0.9rem;
+}
+
+.game-card-disabled {
+    opacity: 0.75;
+}

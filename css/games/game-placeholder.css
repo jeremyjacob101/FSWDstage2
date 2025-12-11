@@ -1,0 +1,21 @@
+.placeholder-main {
+    padding: 2.4rem 0 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.placeholder-card {
+    text-align: center;
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.placeholder-card h1 {
+    margin: 0 0 0.7rem;
+    font-size: 1.7rem;
+}
+
+.placeholder-card p {
+    margin: 0 0 1.3rem;
+    color: var(--text-muted);
+}

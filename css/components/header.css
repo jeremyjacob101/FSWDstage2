@@ -1,15 +1,16 @@
+/* Header shell */
 .site-header {
     position: sticky;
     top: 0;
     z-index: 20;
+    display: flex;
+    height: 100%;
     backdrop-filter: blur(16px);
     background: linear-gradient(to bottom,
             rgba(6, 7, 19, 0.96),
             rgba(6, 7, 19, 0.85),
             transparent);
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-    display: flex;
-    height: 100%;
 }
 
 .header-content {
@@ -31,6 +32,7 @@
     box-shadow: 0 0 0 1px rgba(19, 26, 76, 0.7);
 }
 
+/* Nav layout */
 .main-nav {
     display: flex;
     align-items: center;
@@ -38,36 +40,57 @@
 
 .main-nav-list {
     display: flex;
+    align-items: center;
     gap: 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
-    align-items: center;
     transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-.main-nav a {
+/* One shared "nav pill" style for links + button */
+.main-nav a,
+.nav-games-toggle {
+    display: inline-flex;
+    align-items: center;
+
     font-size: var(--font-size-standard);
     padding: 0.4rem 0.9rem;
+
     border-radius: var(--radius-max);
     border: 1px solid transparent;
     color: var(--text-muted);
+    background: transparent;
+
+    cursor: pointer;
+    text-decoration: none;
+
     transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
         transform 0.12s ease;
 }
 
-.main-nav a:hover {
+/* Button reset (keeps shared styling above) */
+.nav-games-toggle {
+    border: 1px solid transparent;
+    /* keep same visual as links */
+    font: inherit;
+    outline: none;
+}
+
+/* One shared hover */
+.main-nav a:hover,
+.nav-games-toggle:hover {
     background: rgba(79, 124, 255, 0.12);
     border-color: var(--accent-soft);
     color: var(--text-main);
     transform: translateY(-1px);
 }
 
+/* Username */
 .nav-welcome {
     display: inline-flex;
     align-items: center;
     margin-right: 0.4rem;
-    padding: 0;
 }
 
 .nav-username-text {
@@ -75,41 +98,11 @@
     font-weight: 600;
     letter-spacing: 0.06rem;
     text-transform: uppercase;
-
     background: linear-gradient(120deg, #ffffff, #9fb3ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-
     text-shadow: 0 0 8px rgba(79, 124, 255, 0.6);
-}
-
-/* Games PopUp Toggle*/
-.nav-games-toggle {
-    border: none;
-    background: transparent;
-    font: inherit;
-    color: inherit;
-    cursor: pointer;
-}
-
-.nav-games-toggle.nav-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.4rem 0.9rem;
-    border-radius: var(--radius-max);
-    border: 1px solid transparent;
-    font-size: var(--font-size-standard);
-    color: var(--text-muted);
-    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
-        transform 0.12s ease;
-}
-
-.nav-games-toggle.nav-link:hover {
-    background: rgba(79, 124, 255, 0.12);
-    border-color: var(--accent-soft);
-    color: var(--text-main);
-    transform: translateY(-1px);
 }
 
 /* Login/Logout */
@@ -122,19 +115,23 @@
     align-items: center;
 }
 
-/* Games Slider Bar*/
+/* Games slider */
 .games-slider {
     display: flex;
     align-items: center;
+
     max-width: 0;
     opacity: 0;
     overflow: hidden;
+
     border-radius: var(--radius-max);
-    padding: 0.1rem 0.0rem;
+    padding: 0.1rem 0;
     background: rgba(0, 0, 0, 0.25);
+
     pointer-events: none;
-    transition: max-width 0.22s ease, opacity 0.18s ease,
-        background 0.18s ease, box-shadow 0.18s ease;
+
+    transition: max-width 0.22s ease, opacity 0.18s ease, background 0.18s ease,
+        box-shadow 0.18s ease;
 }
 
 .games-slider-track {
@@ -142,6 +139,7 @@
     gap: 0.4rem;
     overflow-x: auto;
     padding: 0.2rem 0.3rem;
+
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -152,13 +150,14 @@
 
 .games-slider-item {
     white-space: nowrap;
-    font-size: var(----font-size-smaller);
+    font-size: var(--font-size-smaller);
     padding: 0.3rem 0.8rem;
     border-radius: var(--radius-max);
     border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(0, 0, 0, 0.25);
 }
 
+/* Open state */
 .main-nav.games-open .main-nav-list {
     opacity: 0;
     pointer-events: none;

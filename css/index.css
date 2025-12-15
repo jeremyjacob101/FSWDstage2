@@ -30,7 +30,7 @@
 
 .hero-kicker {
     margin: 0 0 0.4rem;
-    font-size: var(----font-size-smaller);
+    font-size: var(--font-size-smaller);
     letter-spacing: 0.18rem;
     text-transform: uppercase;
     color: var(--accent-soft);

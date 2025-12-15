@@ -1,0 +1,109 @@
+.leaderboard-main {
+    padding: 2rem 0 3rem;
+}
+
+.leaderboard-section {
+    padding-top: 0.5rem;
+}
+
+.leaderboard-card {
+    background: radial-gradient(circle at top left,
+            rgba(79, 124, 255, 0.18), transparent 55%),
+        var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-soft);
+    padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.leaderboard-header-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+#lb-game-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.35rem;
+}
+
+.lb-subtitle {
+    margin: 0;
+    font-size: var(--font-size-standard);
+    color: var(--text-muted);
+}
+
+/* Game selector */
+.leaderboard-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: var(--font-size-smaller);
+}
+
+.leaderboard-controls label {
+    color: var(--text-muted);
+}
+
+.leaderboard-controls select {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.35rem 0.9rem;
+    color: var(--text-main);
+    font-size: var(--font-size-smaller);
+}
+
+.table-wrapper {
+    margin-top: 0.2rem;
+    overflow-x: auto;
+}
+
+.score-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-standard);
+}
+
+.score-table th,
+.score-table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.score-table th {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.12rem;
+    color: var(--text-muted);
+}
+
+.score-table tbody tr:nth-child(1) td {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.score-table tbody tr:nth-child(2) td,
+.score-table tbody tr:nth-child(3) td {
+    font-weight: 500;
+}
+
+.score-table tbody tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.score-table .empty-row {
+    text-align: center;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.lb-footnote {
+    margin-top: 0.9rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}

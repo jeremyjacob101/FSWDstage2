@@ -106,7 +106,7 @@ if (loginForm) {
 
     user.loginAttempts = 0;
     saveUsers(users);
-    setSession(username, 30);
+    setSession(username, 60);
     msg.textContent = "Login successful! Redirecting...";
 
     setTimeout(() => {

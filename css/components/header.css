@@ -48,36 +48,29 @@
     transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
-/* One shared "nav pill" style for links + button */
+/* Nav bar logic */
 .main-nav a,
 .nav-games-toggle {
     display: inline-flex;
     align-items: center;
-
     font-size: var(--font-size-standard);
     padding: 0.4rem 0.9rem;
-
     border-radius: var(--radius-max);
     border: 1px solid transparent;
     color: var(--text-muted);
     background: transparent;
-
     cursor: pointer;
     text-decoration: none;
-
     transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease,
         transform 0.12s ease;
 }
 
-/* Button reset (keeps shared styling above) */
 .nav-games-toggle {
     border: 1px solid transparent;
-    /* keep same visual as links */
     font: inherit;
     outline: none;
 }
 
-/* One shared hover */
 .main-nav a:hover,
 .nav-games-toggle:hover {
     background: rgba(79, 124, 255, 0.12);

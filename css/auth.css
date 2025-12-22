@@ -21,7 +21,7 @@
 }
 
 .field label {
-    font-size: var(----font-size-smaller);
+    font-size: var(--font-size-smaller);
     color: var(--text-muted);
 }
 

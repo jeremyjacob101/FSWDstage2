@@ -26,6 +26,7 @@ function applyNavState() {
   const usernameSpan = document.getElementById("nav-username");
   const logoutLink = document.getElementById("logout-link");
 
+
   if (session) {
     loggedInItems.forEach((el) => (el.style.display = "inline-flex"));
     loggedOutItems.forEach((el) => (el.style.display = "none"));

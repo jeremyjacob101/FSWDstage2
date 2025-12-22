@@ -32,6 +32,7 @@ if (registerForm) {
     const pass1 = document.getElementById("reg-pass").value;
     const pass2 = document.getElementById("reg-pass2").value;
 
+
     const users = loadUsers();
     const msg = document.getElementById("register-message");
 
@@ -122,5 +123,13 @@ if (activeSession) {
     clearSession();
     alert("Session expired. Please log in again.");
     window.location.href = "../html/auth.html";
+  }
+}
+
+const heroLoginBtn = document.querySelector('a[href="../html/auth.html"]');
+if (heroLoginBtn) {
+  const session = getSession();
+  if (session && session.username) {
+    heroLoginBtn.style.display = "none";
   }
 }

@@ -122,14 +122,9 @@ function spawnTarget() {
     const target = document.createElement("div");
     target.className = "target";
 
-    // Apply styles
+    // Apply dynamic size based on difficulty
     target.style.width = currentSettings.targetSize + "px";
     target.style.height = currentSettings.targetSize + "px";
-    target.style.borderRadius = "50%";
-    target.style.backgroundColor = "#fff";
-    target.style.position = "absolute";
-    target.style.cursor = "pointer";
-    target.style.transition = "transform 0.1s";
 
     // Random Position (Safe bounds)
     const maxX = gameArea.clientWidth - currentSettings.targetSize;
@@ -144,13 +139,7 @@ function spawnTarget() {
         hitTarget(target);
     });
 
-    // Hover Effects
-    target.addEventListener("mouseenter", () => {
-        target.style.transform = "scale(1.1)";
-    });
-    target.addEventListener("mouseleave", () => {
-        target.style.transform = "scale(1)";
-    });
+    // Hover effects are now handled by CSS
 
     // Add to DOM
     gameArea.appendChild(target);
@@ -180,9 +169,7 @@ function hitTarget(target) {
     updateScoreDisplay();
 
     // Success Animation
-    target.style.backgroundColor = "#66BB6A"; // Brighter green HIT
-    target.style.transform = "scale(0)";
-    target.style.pointerEvents = "none"; // Prevent double clicks
+    target.classList.add("target-hit");
 
     setTimeout(() => {
         if (target.parentNode) target.remove();

@@ -34,13 +34,17 @@
                     </div>
 
                     <div class="scoreboard">
-                        <div class="score-item">
-                            <span class="score-label">Score:</span>
-                            <span class="score-value" id="game-score">0</span>
+                        <div class="stat-item">
+                            <span class="stat-label">Time</span>
+                            <span class="stat-value" id="game-timer">30</span>s
                         </div>
-                        <div class="score-item">
-                            <span class="score-label">Best:</span>
-                            <span class="score-value" id="game-best-score">0</span>
+                        <div class="stat-item">
+                            <span class="stat-label">Score</span>
+                            <span class="stat-value" id="game-score">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Best:</span>
+                            <span class="stat-value" id="game-best-score">0</span>
                         </div>
                     </div>
 
@@ -49,12 +53,20 @@
             </section>
 
             <section class="game-area-wrapper">
-                <!-- Fill game-1 later-->
+                <div id="game-area" class="game-area">
+                    <!-- Targets spawn here automatically -->
+                    <div class="game-instructions">
+                        <h2>Click the Target!</h2>
+                        <p>Click on the circles as fast as you can before they disappear.</p>
+                        <p>Choose your difficulty and press "Start Game".</p>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
 
     <embed src="../html/components/footer.html" style="width: 100%; border: 0; height: 80px;">
+    <script src="../js/game-1.js"></script>
 </body>
 
 </html>

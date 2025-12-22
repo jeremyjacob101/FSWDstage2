@@ -1,25 +1,18 @@
-const games = {
-  game_1: {
-    title: "Game 1 - High Scores",
-    description: "Short description.",
-    scores: [],
-  },
-  game_2: {
-    title: "Game 2 - High Scores",
-    description: "Short description.",
-    scores: [],
-  },
-  game_3: {
-    title: "Game 3 - High Scores",
-    description: "Short description.",
-    scores: [],
-  },
-  game_4: {
-    title: "Game 4 - High Scores",
-    description: "Short description.",
-    scores: [],
-  },
-};
+const LEADERBOARD_KEY = "leaderboard_data";
+
+function loadLeaderboardData() {
+  const defaultData = {
+    game_1: { title: "Game 1 - Click Targets", description: "Test your reflexes!", scores: [] },
+    game_2: { title: "Game 2 - TBD", description: "Coming soon...", scores: [] },
+    game_3: { title: "Game 3 - TBD", description: "Coming soon...", scores: [] },
+    game_4: { title: "Game 4 - TBD", description: "Coming soon...", scores: [] },
+  };
+
+  const stored = JSON.parse(localStorage.getItem(LEADERBOARD_KEY) || "{}");
+  return { ...defaultData, ...stored };
+}
+
+const games = loadLeaderboardData();
 
 function formatDate(isoString) {
   if (!isoString) return "";

@@ -1,39 +1,33 @@
-// ============================================
-// CONFIGURATION
-// ============================================
-
 const GAME_CONFIG = {
-    easy: {
-        targetSize: 100,
-        targetDuration: 3000,
-        spawnDelay: 1500,
-        pointsPerHit: 10,
-        missedPenalty: -5,
-        backgroundColor: "#4CAF50"  // Green for Easy
-    },
-    medium: {
-        targetSize: 70,
-        targetDuration: 2000,
-        spawnDelay: 1000,
-        pointsPerHit: 20,
-        missedPenalty: -10,
-        backgroundColor: "#FF9800"  // Orange for Medium
-    },
-    hard: {
-        targetSize: 40,
-        targetDuration: 1000,
-        spawnDelay: 700,
-        pointsPerHit: 50,
-        missedPenalty: -20,
-        backgroundColor: "#F44336"  // Red for Hard
-    }
+  easy: {
+    targetSize: 100,
+    targetDuration: 3000,
+    spawnDelay: 1500,
+    pointsPerHit: 10,
+    missedPenalty: -5,
+    backgroundColor: "#3DCF51",
+  },
+  medium: {
+    targetSize: 70,
+    targetDuration: 2000,
+    spawnDelay: 1000,
+    pointsPerHit: 20,
+    missedPenalty: -10,
+    backgroundColor: "#EE8921",
+  },
+  hard: {
+    targetSize: 40,
+    targetDuration: 1000,
+    spawnDelay: 700,
+    pointsPerHit: 50,
+    missedPenalty: -20,
+    backgroundColor: "#F25545",
+  },
 };
 
-// ============================================
-// GLOBAL VARIABLES
-// ============================================
-
+// Globals
 let score = 0;
+let bestScore = 0;
 let gameActive = false;
 let currentSettings = null;
 let targetsHit = 0;
@@ -42,13 +36,9 @@ let spawnTimer = null; // To track and cancel the next spawn
 let gameTimerInterval = null; // To track the countdown
 let timeLeft = 30;
 const GAME_DURATION = 30; // Seconds
+let instructionsEl = document.querySelector(".game-instructions");
 
-let instructionsElement = document.querySelector(".game-instructions");
-
-// ============================================
-// INITIALIZATION
-// ============================================
-
+// DOM Stuff
 const startBtn = document.getElementById("game-start-btn");
 const difficultySelect = document.getElementById("difficulty-select");
 const scoreDisplay = document.getElementById("game-score");
@@ -56,236 +46,205 @@ const timerDisplay = document.getElementById("game-timer");
 const bestScoreDisplay = document.getElementById("game-best-score");
 const gameArea = document.querySelector(".game-area-wrapper .game-area"); // targeted selection
 
+// Initial Load
+if (difficultySelect) {
+  loadBestScore(difficultySelect.value);
+
+  difficultySelect.addEventListener("change", (e) => {
+    loadBestScore(e.target.value);
+  });
+}
+
 // Start Button Listener
 startBtn.addEventListener("click", () => {
-    if (!gameActive) {
-        startGame();
-    } else {
-        endGame();
-    }
+  if (!gameActive) {
+    startGame();
+  } else {
+    endGame();
+  }
 });
 
-// ============================================
-// GAME FUNCTIONS
-// ============================================
-
+// Game Flow
 function startGame() {
-    // Get difficulty
-    const difficulty = difficultySelect.value;
-    currentSettings = GAME_CONFIG[difficulty];
+  // Get difficulty
+  const difficulty = difficultySelect.value;
+  currentSettings = GAME_CONFIG[difficulty];
 
-    // Reset state
-    score = 0;
-    targetsHit = 0;
-    targetsMissed = 0;
-    timeLeft = GAME_DURATION;
-    gameActive = true;
+  // Reset state
+  score = 0;
+  targetsHit = 0;
+  targetsMissed = 0;
+  timeLeft = GAME_DURATION;
+  gameActive = true;
 
-    // Update UI
-    startBtn.textContent = "Stop Game";
-    startBtn.classList.remove("primary-btn");
-    startBtn.classList.add("secondary-btn");
+  // Update UI
+  startBtn.textContent = "Stop Game";
+  startBtn.classList.remove("primary-btn");
+  startBtn.classList.add("secondary-btn");
 
-    // Hide instructions
-    if (instructionsElement) instructionsElement.style.display = "none";
+  difficultySelect.disabled = true;
+  if (instructionsEl) instructionsEl.style.display = "none";
+  if (gameArea)
+    gameArea.style.backgroundColor = currentSettings.backgroundColor;
 
-    // Disable controls
-    difficultySelect.disabled = true;
+  // Update stats
+  updateScoreDisplay();
+  updateTimerDisplay();
+  loadBestScore(difficulty);
 
-    // Set background color
-    if (gameArea) gameArea.style.backgroundColor = currentSettings.backgroundColor;
-
-    // Update stats
-    updateScoreDisplay();
-    updateTimerDisplay();
-    loadBestScore(difficulty);
-
-    // Start game loop
-    spawnTarget();
-    startTimer();
+  // Start game loop
+  spawnTarget();
+  startTimer();
 }
 
 function startTimer() {
-    gameTimerInterval = setInterval(() => {
-        timeLeft--;
-        updateTimerDisplay();
+  gameTimerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
 
-        if (timeLeft <= 0) {
-            endGame();
-        }
-    }, 1000);
+    if (timeLeft <= 0) {
+      endGame();
+    }
+  }, 1000);
 }
 
 function spawnTarget() {
-    if (!gameActive) return;
+  if (!gameActive) return;
 
-    const target = document.createElement("div");
-    target.className = "target";
+  const target = document.createElement("div");
+  target.className = "target";
 
-    // Apply dynamic size based on difficulty
-    target.style.width = currentSettings.targetSize + "px";
-    target.style.height = currentSettings.targetSize + "px";
+  // Apply dynamic size based on difficulty
+  target.style.width = currentSettings.targetSize + "px";
+  target.style.height = currentSettings.targetSize + "px";
 
-    // Random Position (Safe bounds)
-    const maxX = gameArea.clientWidth - currentSettings.targetSize;
-    const maxY = gameArea.clientHeight - currentSettings.targetSize;
+  // Random Position (Safe bounds)
+  const maxX = gameArea.clientWidth - currentSettings.targetSize;
+  const maxY = gameArea.clientHeight - currentSettings.targetSize;
 
-    target.style.left = Math.max(0, Math.random() * maxX) + "px";
-    target.style.top = Math.max(0, Math.random() * maxY) + "px";
+  target.style.left = Math.max(0, Math.random() * maxX) + "px";
+  target.style.top = Math.max(0, Math.random() * maxY) + "px";
 
-    // Click Event
-    target.addEventListener("click", (e) => {
-        e.stopPropagation(); // Prevent bubbling if needed
-        hitTarget(target);
-    });
+  // Click Event
+  target.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent bubbling if needed
+    hitTarget(target);
+  });
 
-    // Hover effects are now handled by CSS
+  // Add to DOM
+  gameArea.appendChild(target);
 
-    // Add to DOM
-    gameArea.appendChild(target);
+  // Auto-remove after duration
+  const removeTimer = setTimeout(() => {
+    if (target.parentNode && gameActive) {
+      target.remove();
+      missTarget();
+    } else if (target.parentNode) {
+      // Clean up if game ended but target exists
+      target.remove();
+    }
+  }, currentSettings.targetDuration);
 
-    // Auto-remove after duration
-    const removeTimer = setTimeout(() => {
-        if (target.parentNode && gameActive) {
-            target.remove();
-            missTarget();
-        } else if (target.parentNode) {
-            // Clean up if game ended but target exists
-            target.remove();
-        }
-    }, currentSettings.targetDuration);
-
-    // Schedule next spawn
-    spawnTimer = setTimeout(() => {
-        spawnTarget();
-    }, currentSettings.spawnDelay);
+  // Schedule next spawn
+  spawnTimer = setTimeout(() => {
+    spawnTarget();
+  }, currentSettings.spawnDelay);
 }
 
 function hitTarget(target) {
-    if (!gameActive) return;
+  if (!gameActive) return;
 
-    targetsHit++;
-    score += currentSettings.pointsPerHit;
-    updateScoreDisplay();
+  targetsHit++;
+  score += currentSettings.pointsPerHit;
+  updateScoreDisplay();
 
-    // Success Animation
-    target.classList.add("target-hit");
+  // Success Animation
+  target.classList.add("target-hit");
 
-    setTimeout(() => {
-        if (target.parentNode) target.remove();
-    }, 200);
+  setTimeout(() => {
+    if (target.parentNode) target.remove();
+  }, 200);
 }
 
 function missTarget() {
-    if (!gameActive) return;
+  if (!gameActive) return;
 
-    targetsMissed++;
-    score += currentSettings.missedPenalty;
-    if (score < 0) score = 0;
-    updateScoreDisplay();
+  targetsMissed++;
+  score += currentSettings.missedPenalty;
+  if (score < 0) score = 0;
+  updateScoreDisplay();
 }
 
 function endGame() {
-    gameActive = false;
-    clearTimeout(spawnTimer); // Stop future spawns
-    clearInterval(gameTimerInterval); // Stop timer
+  gameActive = false;
+  if (spawnTimer) clearTimeout(spawnTimer); // Stop future spawns
+  if (gameTimerInterval) clearInterval(gameTimerInterval); // Stop timer
 
-    // Update UI
-    startBtn.textContent = "Start Game";
-    startBtn.classList.add("primary-btn");
-    startBtn.classList.remove("secondary-btn");
+  // Update UI
+  startBtn.textContent = "Start Game";
+  startBtn.classList.add("primary-btn");
+  startBtn.classList.remove("secondary-btn");
+  difficultySelect.disabled = false;
+  if (instructionsEl) instructionsEl.style.display = "block";
 
-    // Show instructions again
-    if (instructionsElement) instructionsElement.style.display = "block";
+  // Clean up remaining targets
+  const targets = gameArea.querySelectorAll(".target");
+  targets.forEach((target) => target.remove());
 
-    // Re-enable controls
-    difficultySelect.disabled = false;
-
-    // Clean up remaining targets
-    const targets = gameArea.querySelectorAll(".target");
-    targets.forEach(target => target.remove());
-
-    // Save Score
-    saveBestScore();
-
-    // Reset background (optional, or keep color)
-    // gameArea.style.backgroundColor = ""; 
-
-    // Game Over Message
-    // Using a simpler alert or custom modal in future
-    alert(`Game Over!\n\nScore: ${score}\nHit: ${targetsHit}\nMissed: ${targetsMissed}`);
-}
-
-function updateScoreDisplay() {
-    scoreDisplay.textContent = score;
+  saveBestScore();
+  alert(
+    `Game Over!\n\nScore: ${score}\nHit: ${targetsHit}\nMissed: ${targetsMissed}`
+  );
 }
 
 function updateTimerDisplay() {
-    if (timerDisplay) timerDisplay.textContent = timeLeft;
+  if (timerDisplay) timerDisplay.textContent = timeLeft;
 }
 
-function saveBestScore() {
-    const session = getSession();
-    if (!session) return;
-
-    const difficulty = difficultySelect.value;
-    const key = `${session.username}-game1-${difficulty}-best`;
-    const currentBest = parseInt(localStorage.getItem(key) || "0");
-
-    // 1. Local Best Score (Personal Record)
-    if (score > currentBest) {
-        localStorage.setItem(key, score);
-        bestScoreDisplay.textContent = score;
-        // Optional: celebratory message
-    }
-
-    // 2. Global Leaderboard Update
-    updateGlobalLeaderboard(session.username, score);
-}
-
-function updateGlobalLeaderboard(username, newScore) {
-    const LEADERBOARD_KEY = "leaderboard_data";
-    let data = JSON.parse(localStorage.getItem(LEADERBOARD_KEY) || "{}");
-
-    // Structure initialization if missing
-    if (!data.game_1) {
-        data.game_1 = { title: "Game 1", scores: [] };
-    }
-
-    // Add new score entry
-    data.game_1.scores.push({
-        username: username,
-        score: newScore,
-        date: new Date().toISOString()
-    });
-
-    // Save back
-    localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(data));
+// Score
+function updateScoreDisplay() {
+  scoreDisplay.textContent = String(score);
+  bestScoreDisplay.textContent = String(bestScore);
 }
 
 function loadBestScore(difficulty) {
-    const session = getSession();
-    if (!session) return;
+  const session = JSON.parse(localStorage.getItem("session"));
+  if (!session) return;
 
-    const key = `${session.username}-game1-${difficulty}-best`;
-    const bestScore = localStorage.getItem(key) || "0";
-
-    bestScoreDisplay.textContent = bestScore;
+  const key = `${session.username}-game1-${difficulty}-best`;
+  bestScore = parseInt(localStorage.getItem(key) || "0");
+  bestScoreDisplay.textContent = String(bestScore);
 }
 
-function getSession() {
-    try {
-        return JSON.parse(localStorage.getItem("session"));
-    } catch {
-        return null;
-    }
+function saveBestScore() {
+  const session = JSON.parse(localStorage.getItem("session"));
+  if (!session) return;
+
+  const difficulty = difficultySelect.value;
+  const key = `${session.username}-game1-${difficulty}-best`;
+  const currentBest = parseInt(localStorage.getItem(key) || "0");
+
+  if (score > currentBest) {
+    localStorage.setItem(key, String(score));
+    bestScoreDisplay.textContent = score;
+  }
+
+  updateGlobalLeaderboard(session.username, score);
 }
 
-// Initial Load
-if (difficultySelect) {
-    loadBestScore(difficultySelect.value);
+function updateGlobalLeaderboard(username, newScore) {
+  const LEADERBOARD_KEY = "leaderboard_data";
+  let data = JSON.parse(localStorage.getItem(LEADERBOARD_KEY) || "{}");
 
-    difficultySelect.addEventListener("change", (e) => {
-        loadBestScore(e.target.value);
-    });
+  if (!data.game_1) {
+    data.game_1 = { title: "Game 1", scores: [] };
+  }
+
+  data.game_1.scores.push({
+    username: username,
+    score: newScore,
+    date: new Date().toISOString(),
+  });
+
+  localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(data));
 }

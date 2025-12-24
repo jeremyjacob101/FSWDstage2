@@ -24,15 +24,6 @@
                 </div>
 
                 <div class="game-controls">
-                    <div class="control-group">
-                        <label for="difficulty-select">Difficulty</label>
-                        <select id="difficulty-select">
-                            <option value="easy">Easy</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="hard">Hard</option>
-                        </select>
-                    </div>
-
                     <div class="scoreboard">
                         <div class="score-item">
                             <span class="score-label">Score:</span>
@@ -49,12 +40,22 @@
             </section>
 
             <section class="game-area-wrapper">
-                <!-- Fill game-2 later-->
+                <div id="game-area" class="game-area">
+                    <canvas id="jumpy-canvas" aria-label="Jumpy Bird"></canvas>
+                    <div id="level-banner"></div>
+
+                    <div class="game-instructions">
+                        <h2>Jumping Bird</h2>
+                        <p>Press <b>Space</b> to jump.</p>
+                        <p>Press "Start Game" to play.</p>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
 
     <embed src="../html/components/footer.html" style="width: 100%; border: 0; height: 80px;">
+    <script src="../js/game-2.js"></script>
 </body>
 
 </html>

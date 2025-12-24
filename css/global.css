@@ -10,7 +10,7 @@
     --font-size-smaller: 0.85rem;
     --border-subtle: rgba(255, 255, 255, 0.06);
     --radius-max: 999px;
-    --radius-lg: 16px;
+    --radius-lg: 12px;
     --radius-md: 10px;
     --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
 }
@@ -145,6 +145,8 @@ img {
     margin-top: 1.4rem;
     border-radius: 12px;
     border: 1px solid white;
+    padding: 0;
+    display: block;
 }
 
 .game-area {

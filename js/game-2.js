@@ -6,7 +6,7 @@ const GAME_CONFIG = {
   pipeWidth: 70,
   birdRadius: 12,
 };
-
+// difficulty ramp
 const RAMP = {
   intervalMs: 5000,
   speedMultiplier: 1.1,
@@ -40,6 +40,7 @@ let viewWidth = 0;
 let viewHeight = 0;
 let pixelRatio = 1;
 let levelBadgeEl = null;
+let gameStartTime = null; // Track game start time
 
 function clamp(v, min, max) {
   return Math.max(min, Math.min(max, v));
@@ -71,11 +72,13 @@ window.addEventListener("resize", () => {
   draw();
 });
 
+//start button
 startBtn.addEventListener("click", () => {
   if (!gameActive) startGame();
   else endGame(true);
 });
 
+//space bar
 window.addEventListener("keydown", (event) => {
   if (event.code === "Space") {
     event.preventDefault();
@@ -99,6 +102,11 @@ function startGame() {
   loadBestScore();
   setLevelUI();
 
+  // Track game start
+  if (typeof trackGameStart === "function") {
+    gameStartTime = trackGameStart("game2");
+  }
+
   // Update UI
   startBtn.textContent = "Stop Game";
   startBtn.classList.remove("primary-btn");
@@ -109,14 +117,16 @@ function startGame() {
   resetBird();
   scheduleNextPipe();
   startRampTimer();
+  //performance.now() is more accurate than Date.now()
   prevFrameTimestampMs = performance.now();
+  //ask for the next frame to be rendered 
   reqAnimFrameId = requestAnimationFrame(loop);
 }
 
 // Update Game Flow
 function loop(timeStamp) {
   if (!gameActive) return;
-
+  //limit the time difference to 0.033 seconds
   const timeDifference = Math.min(
     0.033,
     (timeStamp - prevFrameTimestampMs) / 1000
@@ -371,7 +381,7 @@ function endGame(showAlert) {
   pipeSpawnTimer = null;
   rampTimer = null;
   levelBannerHideTimer = null;
-  
+
   // Update UI
   if (levelBannerEl) levelBannerEl.classList.remove("show");
   if (instructionsEl) instructionsEl.style.display = "block";
@@ -387,6 +397,12 @@ function endGame(showAlert) {
   draw();
 
   saveBestScore();
+
+  // Track game end
+  if (typeof trackGameEnd === "function" && gameStartTime) {
+    trackGameEnd("game2", score, gameStartTime);
+  }
+
   if (showAlert) {
     alert(`Game Over!\n\nScore: ${score}\nBest: ${bestScore}`);
   }

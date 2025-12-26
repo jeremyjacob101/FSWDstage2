@@ -7,50 +7,57 @@
     <title>Play2Play</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/leaderboards.css">
 </head>
 
 <body>
     <embed src="../html/components/header.html" style="width: 100%; border: 0; height: 80px;">
 
     <main>
-        <section class="hero">
-            <div class="container hero-inner">
-                <div class="hero-copy">
-                    <p class="hero-kicker">Welcome to Play2Play</p>
-                    <h1 class="hero-title">Play, practice, and track your progress.</h1>
-                    <p class="hero-text">
-                        Log in, choose a game, and see how high you can push your scores.
-                        Your best results are saved on this computer using Local Storage.
+        <!-- User Stats -->
+        <section class="stats-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Your Statistics</h2>
+                    <p class="section-subtitle">
+                        Track your progress and achievements
                     </p>
+                </header>
 
-                    <div class="hero-actions">
-                        <a href="../html/auth.html" class="btn primary-btn">Login / Register</a>
-                        <a href="../html/leaderboards.html" class="btn ghost-btn">See leaderboards</a>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">🎮</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-total-games">0</span>
+                            <span class="stat-label">Games Played</span>
+                        </div>
                     </div>
-
-                    <div class="hero-meta">
-                        <span>2 games ready to play</span>
-                        <span>2 more in development</span>
-                        <span>Scores saved per user</span>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-total-time">0s</span>
+                            <span class="stat-label">Total Playtime</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-game1-best">0</span>
+                            <span class="stat-label">Best Score (Game 1)</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🦅</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="stat-game2-best">0</span>
+                            <span class="stat-label">Best Score (Game 2)</span>
+                        </div>
                     </div>
                 </div>
-
-                <aside class="hero-card">
-                    <h2 class="hero-card-title">Today's Challenge</h2>
-                    <p class="hero-card-text">
-                        Pick a user, play both games, and try to beat your own top score.
-                    </p>
-                    <ul class="hero-card-list">
-                        <li><strong>Game 1</strong> - Description</li>
-                        <li><strong>Game 2</strong> - Description</li>
-                    </ul>
-                    <p class="hero-card-footnote">
-                        Tip: You can log out and create another user to compare scores.
-                    </p>
-                </aside>
             </div>
         </section>
 
+        <!-- Games Section -->
         <section id="games" class="games-section">
             <div class="container">
                 <header class="section-header">
@@ -61,16 +68,15 @@
                 </header>
 
                 <div class="games-grid">
-
                     <article class="game-card">
-                        <h3>Game 1</h3>
-                        <p>Short description.</p>
+                        <h3>Game 1 - Click Targets</h3>
+                        <p>Test your reflexes! Click targets before they disappear.</p>
                         <a href="../html/game-1.html" class="btn primary-btn">Play</a>
                     </article>
 
                     <article class="game-card">
-                        <h3>Game 2</h3>
-                        <p>Short description.</p>
+                        <h3>Game 2 - Flappy Bird</h3>
+                        <p>Navigate through pipes and reach the highest level!</p>
                         <a href="../html/game-2.html" class="btn primary-btn">Play</a>
                     </article>
 
@@ -85,15 +91,79 @@
                         <p>Coming soon.</p>
                         <a href="../html/game-placeholder.html" class="btn ghost-btn">In Development</a>
                     </article>
+                </div>
+            </div>
+        </section>
 
+        <!-- Leaderboard Section -->
+        <section class="leaderboard-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Leaderboards</h2>
+                    <p class="section-subtitle">
+                        Top scores from all players
+                    </p>
+                </header>
+
+                <div class="leaderboard-card">
+                    <div class="leaderboard-header-row">
+                        <div>
+                            <h3 id="lb-game-title">Game 1 - High Scores</h3>
+                            <p id="lb-game-description" class="lb-subtitle">
+                                Top runs from all users.
+                            </p>
+                        </div>
+
+                        <div class="leaderboard-controls">
+                            <label for="game-select">Choose Game</label>
+                            <select id="game-select">
+                                <option value="game_1">Game 1</option>
+                                <option value="game_2">Game 2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table class="score-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>User</th>
+                                    <th>Score</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="leaderboard-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity Section -->
+        <section class="activity-section">
+            <div class="container">
+                <header class="section-header">
+                    <h2>Recent Activity</h2>
+                    <p class="section-subtitle">
+                        Your latest gaming sessions
+                    </p>
+                </header>
+
+                <div class="activity-card">
+                    <div class="activity-list" id="activity-list">
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <embed src="../html/components/footer.html" style="width: 100%; border: 0; height: 80px;">
-    <script src="../js/auth.js"></script>
 
+    <script src="../js/user-tracker.js"></script>
+    <script src="../js/leaderboards.js"></script>
+    <script src="../js/dashboard.js"></script>
 </body>
 
 </html>

@@ -36,10 +36,11 @@ function applyNavState() {
     }
 
     if (logoutLink) {
-      logoutLink.addEventListener("click", function (e) {
+      logoutLink.onclick = function (e) {
         e.preventDefault();
         logout();
-      });
+        return false;
+      };
     }
   } else {
     loggedInItems.forEach((el) => (el.style.display = "none"));
@@ -80,8 +81,13 @@ function initGamesSlider() {
 }
 
 function logout() {
+  // End session tracking if tracker is available
+  if (typeof trackSessionEnd === "function") {
+    trackSessionEnd();
+  }
+
   localStorage.removeItem("session");
-  applyNavState();
+  window.top.location.href = "../auth.html";
 }
 
 applyNavState();

@@ -58,7 +58,18 @@ if (registerForm) {
     };
 
     saveUsers(users);
+
+    // Initialize user tracking
+    if (typeof initializeUserTracking === "function") {
+      initializeUserTracking(username);
+    }
+
     setSession(username, 60);
+
+    // Start session tracking
+    if (typeof trackSessionStart === "function") {
+      trackSessionStart();
+    }
 
     msg.textContent = "Registration successful! Redirecting to games...";
 
@@ -108,6 +119,11 @@ if (loginForm) {
     user.loginAttempts = 0;
     saveUsers(users);
     setSession(username, 60);
+
+    // Start session tracking
+    if (typeof trackSessionStart === "function") {
+      trackSessionStart();
+    }
     msg.textContent = "Login successful! Redirecting...";
 
     setTimeout(() => {

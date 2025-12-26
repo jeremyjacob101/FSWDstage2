@@ -11,6 +11,15 @@
 </head>
 
 <body>
+    <script src="../js/user-tracker.js"></script>
+    <script>
+        // Redirect to index if not logged in
+        const session = getSession();
+        if (!session || Date.now() > session.expires) {
+            alert("Please log in to play games");
+            window.location.href = "../html/index.html";
+        }
+    </script>
     <embed src="../html/components/header.html" style="width: 100%; border: 0; height: 80px;">
 
     <main class="game-main">

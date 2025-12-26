@@ -89,4 +89,4 @@ function initLeaderboards() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", initLeaderboards);
+// Don't auto-initialize - will be called by dashboard.js when logged in

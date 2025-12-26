@@ -37,6 +37,7 @@ let gameTimerInterval = null; // To track the countdown
 let timeLeft = 30;
 const GAME_DURATION = 30; // Seconds
 let instructionsEl = document.querySelector(".game-instructions");
+let gameStartTime = null; // Track game start time
 
 // DOM Stuff
 const startBtn = document.getElementById("game-start-btn");
@@ -76,6 +77,11 @@ function startGame() {
   targetsMissed = 0;
   timeLeft = GAME_DURATION;
   gameActive = true;
+
+  // Track game start
+  if (typeof trackGameStart === "function") {
+    gameStartTime = trackGameStart("game1");
+  }
 
   // Update UI
   startBtn.textContent = "Stop Game";
@@ -192,6 +198,12 @@ function endGame() {
   targets.forEach((target) => target.remove());
 
   saveBestScore();
+
+  // Track game end
+  if (typeof trackGameEnd === "function" && gameStartTime) {
+    trackGameEnd("game1", score, gameStartTime);
+  }
+
   alert(
     `Game Over!\n\nScore: ${score}\nHit: ${targetsHit}\nMissed: ${targetsMissed}`
   );

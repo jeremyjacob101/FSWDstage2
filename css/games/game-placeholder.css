@@ -1,5 +1,7 @@
 .placeholder-main {
     padding: 2.4rem 0 3rem;
+    flex: 1;
+    width: 100%;
     display: flex;
     align-items: center;
 }

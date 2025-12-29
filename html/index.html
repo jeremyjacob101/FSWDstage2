@@ -11,6 +11,14 @@
 </head>
 
 <body>
+    <script src="../js/user-tracker.js"></script>
+    <script>
+        // Redirect to auth if not logged in
+        const session = getSession();
+        if (!session || Date.now() > session.expires) {
+            window.location.href = "../html/auth.html";
+        }
+    </script>
     <embed src="../html/components/header.html" style="width: 100%; border: 0; height: 80px;">
 
     <main>

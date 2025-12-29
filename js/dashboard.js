@@ -1,11 +1,4 @@
 function initDashboard() {
-    const session = getSession();
-
-    if (!session || Date.now() > session.expires) {
-        window.location.href = "../html/auth.html";
-        return;
-    }
-
     loadUserStats();
     loadRecentActivity();
     initLeaderboards();

@@ -72,8 +72,7 @@
 
 /* Right side card */
 .hero-card {
-    background: radial-gradient(circle at top left, rgba(79, 124, 255, 0.32), transparent 60%),
-        var(--bg-elevated);
+    background: radial-gradient(circle at top left, rgba(79, 124, 255, 0.32), transparent 60%), var(--bg-elevated);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-subtle);
     box-shadow: var(--shadow-soft);
@@ -209,9 +208,7 @@
 }
 
 .activity-card {
-    background: radial-gradient(circle at top left,
-            rgba(79, 124, 255, 0.18), transparent 55%),
-        var(--bg-elevated);
+    background: radial-gradient(circle at top left, rgba(79, 124, 255, 0.18), transparent 55%), var(--bg-elevated);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-subtle);
     box-shadow: var(--shadow-soft);
